@@ -7,8 +7,24 @@ if(status != "none" && status != "pressed" && status != "retry")
     status = "none";
 
 
-function startDownload(){
-    console.log("downloathe");
+function startDownload() {
+    const url = 'https://files.she-a.eu/fileServer' + location.pathname;
+    console.log(url);
+    fetch(url)
+        .then(res => {
+            if (!res.ok) throw new Error("download failed");
+            return res.blob();
+        })
+        .then(blob => {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = location.pathname.split('/').pop() || 'download';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(a.href);
+        })
+        .catch(err => console.error("download error:", err));
 }
 
 function updateCookieText(){
