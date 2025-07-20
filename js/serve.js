@@ -8,17 +8,22 @@ if(status != "none" && status != "pressed" && status != "retry")
 
 
 function startDownload() {
+//    window.location = "https://files.she-a.eu/fileServer/" + location.pathname;
+    givenName = "hmmm";
     const url = 'https://files.she-a.eu/fileServer' + location.pathname;
     console.log(url);
     fetch(url)
         .then(res => {
             if (!res.ok) throw new Error("download failed");
+            const cd = res.headers.get("Content-Disposition");
+            givenName = cd.slice(cd.indexOf("\"") + 1, -1);
             return res.blob();
         })
         .then(blob => {
+
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.download = location.pathname.split('/').pop() || 'download';
+            a.download = givenName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
