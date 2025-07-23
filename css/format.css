@@ -35,3 +35,24 @@ button:disabled {
     cursor: not-allowed;
     border: none;
 }
+@media (max-aspect-ratio: 1) {
+    .callItems{
+        width: 96vw;
+    }
+    #key,#pas {
+	font-size: 8vw;
+        height:10%;
+    }
+    #cookieText {
+        font-size: 5vw;
+    }
+    #Upper {
+	font-size: 8vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    }
+    #itemButton,#key{
+        margin-top: 6vw;
+    }
+}
