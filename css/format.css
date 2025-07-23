@@ -25,6 +25,7 @@ p {
     border: 0.02vw solid #45475a;
     padding: 0;
     width: 100%;
+    font-family: inherit;
 }
 button:hover {
     opacity: 0.8;

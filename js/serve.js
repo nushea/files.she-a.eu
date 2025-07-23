@@ -5,14 +5,21 @@ status = "none";
 downloadButton = document.getElementById("itemButton"); 
 cookieText = document.getElementById("cookieText"); 
 
-status = document.cookie.substring(document.cookie.search("status=")+7);
-if(status != "pressed")
-    status = "none";
-
 if(location.pathname.length > 1){
-    document.getElementById("key").value = location.pathname.substring(1, location.pathname.indexOf('&'));
-    document.getElementById("pas").value = location.pathname.substring(1+ location.pathname.indexOf('&'));
+    if(location.pathname.indexOf('&') != -1){
+        document.getElementById("key").value = location.pathname.substring(1, location.pathname.indexOf('&'));
+        document.getElementById("pas").value = location.pathname.substring(1+ location.pathname.indexOf('&'));
+    }else{
+        document.getElementById("key").value = location.pathname.substring(1); 
+    }
 }
+    if(document.getElementById("key").value.length > 0){
+        status = document.cookie.substring(document.cookie.indexOf("status+"+document.getElementById("key").value+"=")+("status+"+document.getElementById("key").value+"=").length);
+        if(status.indexOf(";") >= 0)
+        status = status.substring(0,status.indexOf(";"));
+        if(status != "pressed")
+            status = "none";
+    }
 
 function startDownload(key, pass) {
     givenName = "hmmm";
@@ -37,17 +44,16 @@ function startDownload(key, pass) {
         .catch(err => console.log("nop"));
 }
 
-function updateCookieText(){
+function updateCookieText(key){
     cookieText.innerHTML = "<p>Please fill in the fields below:</p>";
-//    console.log(Date.now()/1000);
     switch(String(status)){
-        case "none":    cookieText.innerHTML += "<p> Download</p>"; break;
-        case "newPress": cookieText.innerHTML += "<p> Downloading </p>"; break;
-        case "pressed": cookieText.innerHTML += "<p> Already Downloaded </p>"; break;
+        case "none":    cookieText.innerHTML += "<p> Download "+ key + "</p>"; break;
+        case "newPress": cookieText.innerHTML += "<p> Downloading "+ key +"</p>"; break;
+        case "pressed": cookieText.innerHTML += "<p> Already Downloaded "+key+"</p>"; break;
         default: location.reload(); break;
     }
     
-} updateCookieText();
+} updateCookieText(document.getElementById("key").value);
 
 function downloadButtonClick(key, pass){
     if(key == ""){
@@ -70,7 +76,7 @@ function downloadButtonClick(key, pass){
         }
     }, 10);
     startDownload(key, pass);
-    document.cookie = "status=pressed";
-    updateCookieText();
+    document.cookie = "status+"+key+"=pressed";
+    updateCookieText(key);
 }
 
