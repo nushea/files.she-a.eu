@@ -1,3 +1,13 @@
+@keyframes shakeBorder {
+    0% { border-color: #f38ba8;  }
+    50% { border-color: #f38ba8; background-color: #5f2735;}
+    100% { border-color: #f38ba8;}
+}
+
+.callItems.error {
+    animation: shakeBorder 0.5s ease;
+}
+
 p {
   text-align: center;
 }
@@ -14,8 +24,11 @@ p {
     position: fixed;
     left: -1000vw;
 }
-#itemButton,#key{
+#getField{
     margin-top: 6vh;
+}
+#Footer {
+    font-size: 2vh;
 }
 .callItems {
     font-size: 5vh;
@@ -27,6 +40,29 @@ p {
     width: 100%;
     font-family: inherit;
 }
+.fieldItem {
+    position: relative;
+    display: flex;
+    align-items: center; /* this is the magic */
+}
+.inputIcons{
+    width: 5vh;
+    position: absolute;
+    padding-left: 1vh;
+}
+#keyIcon{
+}
+.keyField{
+	display: flex;
+	align-items: center;
+}
+
+#fieldItem{
+    display: flex;
+    align-content: center;
+
+}
+
 button:hover {
     opacity: 0.8;
 }
@@ -41,7 +77,6 @@ button:disabled {
     }
     #key,#pas {
 	font-size: 8vw;
-        height:10%;
     }
     #cookieText {
         font-size: 5vw;
@@ -52,7 +87,7 @@ button:disabled {
 	align-items: center;
 	justify-content: center;
     }
-    #itemButton,#key{
+    #getField{
         margin-top: 6vw;
     }
 }

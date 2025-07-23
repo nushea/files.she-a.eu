@@ -5,6 +5,10 @@ status = "none";
 downloadButton = document.getElementById("itemButton"); 
 cookieText = document.getElementById("cookieText"); 
 
+keyObj = document.getElementById("key");
+pasObj = document.getElementById("pas");
+ftcObj = document.getElementById("itemButton"); 
+
 if(location.pathname.length > 1){
     if(location.pathname.indexOf('&') != -1){
         document.getElementById("key").value = location.pathname.substring(1, location.pathname.indexOf('&'));
@@ -20,6 +24,17 @@ if(location.pathname.length > 1){
         if(status != "pressed")
             status = "none";
     }
+
+function showError() {
+    keyObj.classList.add('error');
+    pasObj.classList.add('error');
+    ftcObj.classList.add('error');
+    setTimeout(() => {
+        keyObj.classList.remove('error');
+        pasObj.classList.remove('error');
+        ftcObj.classList.remove('error');
+    }, 500); 
+}
 
 function startDownload(key, pass) {
     givenName = "hmmm";
@@ -41,7 +56,7 @@ function startDownload(key, pass) {
             document.body.removeChild(a);
             URL.revokeObjectURL(a.href);
         })
-        .catch(err => console.log("nop"));
+        .catch(err => showError());
 }
 
 function updateCookieText(key){
@@ -59,6 +74,7 @@ function downloadButtonClick(key, pass){
     if(key == ""){
         document.getElementById("key").placeholder = "Name (REQUIRED)";
         document.getElementById("key").style.color = "#f38ba8";
+        showError();
         return;
     }
     if(status == "none")
@@ -79,4 +95,28 @@ function downloadButtonClick(key, pass){
     document.cookie = "status+"+key+"=pressed";
     updateCookieText(key);
 }
+keyObj.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        pasObj.focus();
+}})
+pasObj.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        ftcObj.focus();
+}})
 
+keyObj.addEventListener('input', () => {
+    if (keyObj.value.trim().length > 0) {
+        document.getElementById("usrIcon").style.opacity = "0%";
+    } else {
+        document.getElementById("usrIcon").style.opacity = "100%";
+    }
+});
+pasObj.addEventListener('input', () => {
+    if (pasObj.value.trim().length > 0) {
+        document.getElementById("keyIcon").style.opacity = "0%";
+    } else {
+        document.getElementById("keyIcon").style.opacity = "100%";
+    }
+});

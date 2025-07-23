@@ -26,12 +26,24 @@
                                 </noscript>
                             </div>
                             <div id="fields">
-                                <input type="text" id="key" class="callItems" placeholder="Name">
-                                <input type="text" id="pas" class="callItems" placeholder="Code (may be empty)">
-                                <button id="itemButton" class="callItems" onclick="downloadButtonClick(document.getElementById('key').value,document.getElementById('pas').value)">FETCH</button>
+                                <div id="getField" class="fieldItem">
+                                    <img id="usrIcon" class="inputIcons" src="/img/key.svg">
+                                    <input type="text" id="key" class="callItems" placeholder="Name">
+                                </div>
+                                <div id="keyField" class="fieldItem">
+                                    <img id="keyIcon" class="inputIcons" src="/img/cod.svg">
+                                    <input type="text" id="pas" class="callItems" placeholder="Code (may be empty)">
+                                </div>
+                                <div id="getField" class="fieldItem">
+                                    <img class="inputIcons" src="/img/get.svg">
+                                    <button id="itemButton" class="callItems" onclick="downloadButtonClick(document.getElementById('key').value,document.getElementById('pas').value)">FETCH</button>
+                                </div>
                             </div>
                         </div>
                         <script src="/js/serve.js"></script>
+                    </li>
+                    <li id="Footer">
+                        <p> This website only uses functional cookies </p>
                     </li>
                 </ul>
             </div>
