@@ -1,3 +1,36 @@
 p {
   text-align: center;
 }
+
+#Lower {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#fields {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: -1000vw;
+}
+#itemButton,#key{
+    margin-top: 6vh;
+}
+.callItems {
+    font-size: 5vh;
+    text-align: center;
+    background-color: #313244;
+    color: #f5c2e7;
+    border: 0.02vw solid #45475a;
+    padding: 0;
+    width: 100%;
+}
+button:hover {
+    opacity: 0.8;
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border: none;
+}

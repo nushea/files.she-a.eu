@@ -19,11 +19,18 @@
                         <p> Snow Files </p>
                     </li>
                     <li id="Lower">
-                        <dev id="cookieText">
-                            <noscript>
-                                <p> Maybe stupid but you do need javascript to run this, just dm me for the post call if you dont care for that.</p>
-                            </noscript>
-                        </dev>
+                        <div id="tokens">
+                            <div id="cookieText">
+                                <noscript>
+                                    <p style="font-size: 10vh;"> You need javascript to run this</p>
+                                </noscript>
+                            </div>
+                            <div id="fields">
+                                <input type="text" id="key" class="callItems" placeholder="Name">
+                                <input type="text" id="pas" class="callItems" placeholder="Code (may be empty)">
+                                <button id="itemButton" class="callItems" onclick="downloadButtonClick(document.getElementById('key').value,document.getElementById('pas').value)">FETCH</button>
+                            </div>
+                        </div>
                         <script src="/js/serve.js"></script>
                     </li>
                 </ul>
