@@ -9,6 +9,8 @@ keyObj = document.getElementById("key");
 pasObj = document.getElementById("pas");
 ftcObj = document.getElementById("itemButton"); 
 
+vispas = 0;
+
 if(location.pathname.length > 1){
     if(location.pathname.indexOf('&') != -1){
         document.getElementById("key").value = location.pathname.substring(1, location.pathname.indexOf('&'));
@@ -95,6 +97,25 @@ function downloadButtonClick(key, pass){
     document.cookie = "status+"+key+"=pressed";
     updateCookieText(key);
 }
+
+function changeVisibility(){
+    if(!vispas){
+        vispas = 1;
+        pasObj.type = "password";
+        document.getElementById("visIcon").src = "/img/vis.svg";
+    }else{
+        vispas = 0;
+        pasObj.type = "text";
+        document.getElementById("visIcon").src = "/img/invis.svg";
+    }
+}
+
+if (pasObj.value.trim().length > 0) {
+    document.getElementById("keyIcon").style.opacity = "50%";
+} else {
+    document.getElementById("keyIcon").style.opacity = "100%";
+}
+
 keyObj.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -116,6 +137,26 @@ keyObj.addEventListener('input', () => {
 pasObj.addEventListener('input', () => {
     if (pasObj.value.trim().length > 0) {
         document.getElementById("keyIcon").style.opacity = "0%";
+        document.getElementById("visIcon").style.opacity = "1";
+    } else {
+        document.getElementById("keyIcon").style.opacity = "100%";
+        document.getElementById("visIcon").style.opacity = "0";
+    }
+});
+keyObj.addEventListener('focusin', () => {
+    document.getElementById("visIcon").style.opacity = "0";
+});
+keyObj.addEventListener('focusout', () => {
+    document.getElementById("visIcon").style.opacity = "1";
+    if (keyObj.value.trim().length > 0) {
+        document.getElementById("usrIcon").style.opacity = "50%";
+    } else {
+        document.getElementById("usrIcon").style.opacity = "100%";
+    }
+});
+pasObj.addEventListener('focusout', () => {
+    if (pasObj.value.trim().length > 0) {
+        document.getElementById("keyIcon").style.opacity = "50%";
     } else {
         document.getElementById("keyIcon").style.opacity = "100%";
     }

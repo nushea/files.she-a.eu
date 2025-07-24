@@ -50,7 +50,10 @@ p {
     position: absolute;
     padding-left: 1vh;
 }
-#keyIcon{
+#visIcon{
+    right: 0;
+    padding-left: 1vh;
+    opacity: 0%;
 }
 .keyField{
 	display: flex;

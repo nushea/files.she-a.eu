@@ -9,6 +9,7 @@
         <title>Nusea</title>
     </head>
     <body>
+        <input type="password" style="position:absolute; top:-9999px;" autocomplete="off">
         <div id="Items">
             <div id="Left">
                 <iframe id="Regions" src="https://template.she-a.eu/LeftHandle/index.html" target="_top"></iframe>
@@ -32,7 +33,8 @@
                                 </div>
                                 <div id="keyField" class="fieldItem">
                                     <img id="keyIcon" class="inputIcons" src="/img/cod.svg">
-                                    <input type="text" id="pas" class="callItems" placeholder="Code (may be empty)">
+                                    <input type="password" id="pas" class="callItems" placeholder="Code (may be empty)">
+                                    <img id="visIcon" class="inputIcons" autocomplete="off" onclick="changeVisibility()" src="/img/vis.svg">
                                 </div>
                                 <div id="getField" class="fieldItem">
                                     <img class="inputIcons" src="/img/get.svg">
